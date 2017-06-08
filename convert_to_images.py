@@ -21,3 +21,19 @@ data = get_data(name)
 for i in range(32):
 	plt.imshow(data[0,:,:,i])
 	plt.savefig(imagesdir + name + "-" + str(i) + ".png")
+	
+name = "conv2"
+data = get_data(name)
+for i in range(64):
+	plt.imshow(data[0,:,:,i])
+	plt.savefig(imagesdir + name + "-" + str(i) + ".png")
+	
+name = "fc"
+data = get_data(name)
+plt.imshow(data.reshape(32,32))
+plt.savefig(imagesdir + name + ".png")
+
+name = "output"
+data = get_data(name)
+plt.imshow(data)
+plt.savefig(imagesdir + name + ".png")
