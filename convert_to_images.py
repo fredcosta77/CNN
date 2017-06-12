@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
-pickledir = "pickles/"
-imagesdir = "images/"
+pickledir = "pickles/epoch_10/"
+imagesdir = "images/epoch_10/"
 
 def get_data(n):
 		f = open(pickledir + n + ".pickle", "rb")

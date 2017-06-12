@@ -15,7 +15,10 @@ y = tf.placeholder('float')
 keep_rate = 0.8
 keep_prob = tf.placeholder(tf.float32)
 
-checkpoint = sys.argv[1]
+try:
+	checkpoint = sys.argv[1]
+except:
+	checkpoint = 10
 checkpoint_filename = "checkpoints/model-" + str(checkpoint) + ".ckpt"
 
 def conv2d(x, W):
@@ -51,7 +54,8 @@ def convolutional_neural_network(x, view_layers = False):
 	fc = tf.nn.dropout(fc, keep_rate)
 
 	output = tf.matmul(fc, weights['out'])+biases['out']
-	if view_layers: return (conv1, conv2, fc, output)
+	if view_layers: 
+		return (conv1, conv2, fc, output)
 	else: return output
 
 def use_neural_network(x, view_layers = False):
@@ -64,6 +68,8 @@ def use_neural_network(x, view_layers = False):
 		sess.run(tf.global_variables_initializer())
 		try:
 			saver.restore(sess, checkpoint_filename)
+		except:
+			pass
 		if view_layers:
 			return (conv1.eval(), conv2.eval(), fc.eval(), output.eval())
 		else: return output.eval()
@@ -77,22 +83,22 @@ print("Conv2: ", conv2)
 print("FC : ",fc)
 print("Output: ", output)
 
-f = open("input.pickle", 'wb')
+f = open("pickles/input.pickle", 'wb')
 pickle.dump(img, f)
 f.close()
 
-f = open("conv1.pickle", 'wb')
+f = open("pickles/conv1.pickle", 'wb')
 pickle.dump(conv1, f)
 f.close()
 
-f = open("conv2.pickle", 'wb')
+f = open("pickles/conv2.pickle", 'wb')
 pickle.dump(conv2, f)
 f.close()
 
-f = open("fc.pickle", 'wb')
+f = open("pickles/fc.pickle", 'wb')
 pickle.dump(fc, f)
 f.close()
 
-f = open("output.pickle", 'wb')
+f = open("pickles/output.pickle", 'wb')
 pickle.dump(output, f)
 f.close()
