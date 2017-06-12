@@ -20,6 +20,7 @@ try:
 except:
 	checkpoint = 10
 checkpoint_filename = "checkpoints/model-" + str(checkpoint) + ".ckpt"
+print("using checkpoint " + str(checkpoint))
 
 def conv2d(x, W):
 	return tf.nn.conv2d(x, W, strides=[1,1,1,1], padding='SAME')
@@ -83,22 +84,22 @@ print("Conv2: ", conv2)
 print("FC : ",fc)
 print("Output: ", output)
 
-f = open("pickles/input.pickle", 'wb')
+f = open("pickles/epoch_" + str(checkpoint) + "/input.pickle", 'wb')
 pickle.dump(img, f)
 f.close()
 
-f = open("pickles/conv1.pickle", 'wb')
+f = open("pickles/epoch_" + str(checkpoint) + "/conv1.pickle", 'wb')
 pickle.dump(conv1, f)
 f.close()
 
-f = open("pickles/conv2.pickle", 'wb')
+f = open("pickles/epoch_" + str(checkpoint) + "/conv2.pickle", 'wb')
 pickle.dump(conv2, f)
 f.close()
 
-f = open("pickles/fc.pickle", 'wb')
+f = open("pickles/epoch_" + str(checkpoint) + "/fc.pickle", 'wb')
 pickle.dump(fc, f)
 f.close()
 
-f = open("pickles/output.pickle", 'wb')
+f = open("pickles/epoch_" + str(checkpoint) + "/output.pickle", 'wb')
 pickle.dump(output, f)
 f.close()

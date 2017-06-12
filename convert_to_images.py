@@ -1,9 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
+import sys
 
-pickledir = "pickles/epoch_10/"
-imagesdir = "images/epoch_10/"
+epoch = sys.argv[1]
+
+pickledir = "pickles/epoch_" + str(epoch) +"/"
+imagesdir = "images/epoch_" + str(epoch) +"/"
 
 def get_data(n):
 		f = open(pickledir + n + ".pickle", "rb")
