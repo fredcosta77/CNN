@@ -4,6 +4,7 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot = True)
 import pickle
+import sys
 
 n_classes = 10
 batch_size = 128
@@ -13,6 +14,9 @@ y = tf.placeholder('float')
 
 keep_rate = 0.8
 keep_prob = tf.placeholder(tf.float32)
+
+checkpoint = sys.argv[1]
+checkpoint_filename = "checkpoints/model-" + str(checkpoint) + ".ckpt"
 
 def conv2d(x, W):
 	return tf.nn.conv2d(x, W, strides=[1,1,1,1], padding='SAME')
@@ -58,7 +62,8 @@ def use_neural_network(x, view_layers = False):
 
 	with tf.Session() as sess:
 		sess.run(tf.global_variables_initializer())
-		saver.restore(sess,"model.ckpt")
+		try:
+			saver.restore(sess, checkpoint_filename)
 		if view_layers:
 			return (conv1.eval(), conv2.eval(), fc.eval(), output.eval())
 		else: return output.eval()

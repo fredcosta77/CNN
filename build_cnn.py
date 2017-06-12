@@ -67,8 +67,8 @@ def train_neural_network(x):
             epoch = 0
             
         for epoch in range(epoch, hm_epochs):
-            last_model_filename = "model-" + str(epoch) + ".ckpt"
-            new_model_filename = "model-" + str((epoch+1)) + ".ckpt"            
+            last_model_filename = "checkpoints/model-" + str(epoch) + ".ckpt"
+            new_model_filename = "checkpoints/model-" + str((epoch+1)) + ".ckpt"            
             if epoch != 0:
                 saver.restore(sess, last_model_filename)        
             epoch_loss = 0
