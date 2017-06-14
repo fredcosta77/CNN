@@ -30,10 +30,22 @@ f = open(imagesdir + name + ".png", "wb")
 conv1_combined.save(f)
 f.close()
 	
-#conv2_combined = Image.new("RGB", (8*w, 8*h))
-#name = "conv2"
-#cw = 0
-#ch = 0
-#for i in range(64):
-#	cur_imgfn = imagesdir + name + "-" + str(i) + ".png"
-#	plt.savefig(imagesdir + name + "-" + str(i) + ".png")
+conv2_combined = Image.new("RGB", (8*w, 8*h))
+name = "conv2"
+cw = 0
+ch = 0
+for i in range(64):
+	cur_imgfn = imagesdir + name + "-" + str(i) + ".png"
+	f = open(cur_imgfn, "rb")
+	im = Image.open(f)
+	im.load()
+	f.close()
+	conv2_combined.paste(im, (cw, ch))
+	cw += w
+	if (i+1) % 8 == 0: 
+		cw = 0
+		ch += h
+
+f = open(imagesdir + name + ".png", "wb")
+conv2_combined.save(f)
+f.close()
