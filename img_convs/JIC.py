@@ -1,4 +1,3 @@
-__doc__ = '''This module uses the pillow library to increase dataset size for image data through affine transformations.'''
 from PIL import Image, ImageFilter
 import os
 
