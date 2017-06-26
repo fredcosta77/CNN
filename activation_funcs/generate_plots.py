@@ -27,9 +27,4 @@ def generate_plot(function, xlimits, ylimits):
 	plt.clf()
 
 if __name__ == "__main__":
-
-	generate_plot(threshold, (-2, 2), (-2, 2))
-	generate_plot(logistic, (-2, 2), (-2, 2))
-	generate_plot(tanh, (-2, 2), (-2, 2))
-	generate_plot(relu, (-2, 2), (-2, 2))
-	generate_plot(leaky_relu, (-2, 2), (-2, 2))	
+	for i in [threshold, logistic, tanh, relu, leaky_relu]: generate_plot(i, (-2,2), (-2,2))
